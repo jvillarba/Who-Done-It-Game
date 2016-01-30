@@ -1,0 +1,34 @@
+body {
+  font-family: Lucida Grande;
+  display: block;
+  background-color: #f6f6f6;
+  padding: 0;
+}
+
+div {
+  border: 1px;
+}
+
+#container {
+  background-color: #fff4db;
+  width: 450px;
+  height: 500px;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid white;
+}
+
+.box {
+  width: 100px;
+  height: 150px;
+  border: 1px solid blue;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+img {
+  width: inherit;
+  height: inherit;
+}
