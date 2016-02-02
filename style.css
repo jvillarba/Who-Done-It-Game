@@ -1,7 +1,8 @@
 body {
   font-family: Lucida Grande;
+  color: #f6f6f6;
   display: block;
-  background-color: #f6f6f6;
+  background-color: darkblue;
   padding: 0;
 }
 
@@ -12,7 +13,7 @@ div {
 }
 
 #container {
-  background-color: #fff4db;
+  background-color: darkblue;
   width: 650px;
   height: 525px;
   margin-left: auto;
@@ -37,6 +38,7 @@ main {
 
 #instructions {
   background-color: #D9D8F7;
+  color: darkblue;
   text-align: center;
   font-style: italic;
   float: none;
@@ -47,7 +49,8 @@ main {
 }
 
 .player {
-  background-color: #D9D8F7;
+  color: darkblue;
+  background-color: #fff4db;
   display: inline;
   padding: 10px;
   margin: 15px;

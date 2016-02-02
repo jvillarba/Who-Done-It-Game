@@ -4,6 +4,20 @@ var startButton = document.getElementById('start')
 var suspectCards = document.getElementsByClassName('suspect')
 var weaponCards = document.getElementsByClassName('weapon')
 var instructions = document.getElementById('instructions')
+var boxes = document.getElementsByClassName('box')
+
+var scarletImg = '<img class="suspect" src="images/Miss_Scarlett.png" id="scarlet" />'
+var greenImg = '<img class="suspect" src="images/Mr_Green.png" id="green" />'
+var plumImg = '<img class="suspect" src="images/Prof_Plum.png" id="plum" />'
+var whiteImg = '<img class="suspect" src="images/Mrs_White.png" id="white" />'
+var candlestickImg = '<img class="weapon" src="images/candlestick.png" id="candlestick" />'
+var pipeImg = '<img class="weapon" src="images/pipe.png" id="pipe" />'
+var malletImg = '<img class="weapon" src="images/mallet.png" id="mallet" />'
+var gunImg = '<img class="weapon" src="images/gun.png" id="gun" />'
+
+var pictures = [
+  scarletImg, greenImg, plumImg, whiteImg, candlestickImg, pipeImg, malletImg, gunImg
+]
 
 var suspects = [
   {name: 'Miss Scarlet', id: 'scarlet'},
@@ -24,7 +38,14 @@ var playerGuess = {}
 startButton.addEventListener('click', function(){
   console.log('reset game now')
 
-  // clearing killer variable
+  // lays out the choices
+  for insertImg(i){
+    if (boxes[i] === '') {
+      boxes[Math.floor(Math.random() * boxes.length)].innerHTML = pictures.splice(0,1)
+    }
+  }
+
+  // clears killer variable
   killer = {}
 
   // computer randomly picks a killer and a weapon
@@ -39,7 +60,7 @@ startButton.addEventListener('click', function(){
   for (var i = 0; i < suspectCards.length; i++) {
     suspectCards[i].addEventListener('click', function(){
     playerGuess.suspect = (this.id)
-    instructions.innerHTML = 'You chose ' + playerGuess.suspect +'. Now choose the weapon.'
+    instructions.innerHTML = "You chose " + playerGuess.suspect +". Now choose the weapon they used."
 
     // if (this.id === killer.suspect.id) {
     //   console.log('you got em')
@@ -52,6 +73,7 @@ startButton.addEventListener('click', function(){
   for (var i = 0; i < weaponCards.length; i++) {
     weaponCards[i].addEventListener('click', function(){
     playerGuess.weapon = (this.id)
+    instructions.innerHTML = "You chose the " + playerGuess.weapon
     // if (this.id === killer.weapon.id) {
     //   console.log('right weapon')
     //   return
@@ -59,22 +81,12 @@ startButton.addEventListener('click', function(){
     //   console.log('wrong. try again')
     })
   }
-
+  if (playerGuess.suspect === killer.suspect.id && playerGuess.weapon === killer.weapon.id){
+    instructions.innerHTML = "You win"
+  } else if ((playerGuess.suspect === killer.suspect.id && playerGuess.weapon !== killer.weapon.id) || (playerGuess.suspect !== killer.suspect.id && playerGuess.weapon === killer.weapon.id)){
+    instructions.innerHTML = "You have one right"
+  } else {
+    instructions.innerHTML = "Sorry, try again"
+    }
 
   })
-  function winner(){
-  if (playerGuess.suspect === killer.suspect.id && playerGuess.weapon === killer.weapon.id){
-    console.log(playerGuess.suspect)
-    console.log(playerGuess.weapon)
-  } else if (playerGuess.suspect === killer.suspect.id && playerGuess.weapon !== killer.weapon.id){
-    console.log(playerGuess.suspect)
-    console.log(playerGuess.weapon)
-  } else if (playerGuess.suspect !== killer.suspect.id && playerGuess.weapon === killer.weapon.id){
-    console.log(playerGuess.suspect)
-    console.log(playerGuess.weapon)
-  } else {
-    console.log(playerGuess.suspect)
-    console.log(playerGuess.weapon)
-    }
-  }
-  winner()
