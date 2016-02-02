@@ -8,23 +8,26 @@
   <body>
     <div id="container">
     <header>
-      <h1>Guess the murderer?</h1>
+      <h1>Guess the murderer...</h1>
     </header>
 
     <main>
         <div class="board"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
+          <div class="box"><img class="suspect" src="images/Mr_Green.png" id="green" /></div>
+          <div class="box"><img class="suspect" src="images/Miss_Scarlett.png" id="scarlet" /></div>
+          <div class="box"><img class="suspect" src="images/Prof_Plum.png" id="plum" /></div>
+          <div class="box"><img class="suspect" src="images/Mrs_White.png" id="white" /></div>
           <br>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
+          <div class="box"><img class="weapon" src="images/candlestick.png" id="candlestick" /></div>
+          <div class="box"><img class="weapon" src="images/pipe.png" id="pipe" /></div>
+          <div class="box"><img class="weapon" src="images/mallet.png" id="mallet" /></div>
+          <div class="box"><img class="weapon" src="images/gun.png" id="gun" /></div>
           <br>
+          <div id="instructions"></div>
           <div class="player left">Player 1</div>
           <div class="player right">Player 2</div>
           <br>
-          <button class="startReset">Start</button>
+          <button id="start">Start</button>
     </main>
 
     <script src="app.js"></script>
