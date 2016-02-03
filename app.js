@@ -34,37 +34,50 @@ var weapons = [
 var killer = {}
 var playerGuess = {}
 
-// random generator
-  function pickRandom(x){
-    x = Math.floor(Math.random() * boxes.length)
-    return x
-  }
-
-// lays out the choices
-  while (pictures.length > 0) {
-    boxes[pickRandom()].innerHTML = pictures.splice(0,1)
-  }
-
 // pressing "Reset"
 startButton.addEventListener('click', function(){
   console.log('reset game now')
 
+// randomizes pictures
+  function fisherYates (myArray) {
+    var i = myArray.length;
+    if ( i == 0 ) return false;
+    while ( --i ) {
+       var j = Math.floor( Math.random() * ( i + 1 ) );
+       var tempi = myArray[i];
+       var tempj = myArray[j];
+       myArray[i] = tempj;
+       myArray[j] = tempi;
+     }
+  }
+
+// // random generator
+//     function pickRandom(x){
+//       x = Math.floor(Math.random() * boxes.length)
+//       return x
+//     }
+// lays out the choices -- need to work on not overlapping
+    for (var i = 0; i < boxes.length; i++) {
+      fisherYates(pictures)
+      boxes[i].innerHTML = pictures.splice(0,1)
+    }
+
 // clears killer variable
   killer = {}
 
-  // computer randomly picks a killer and a weapon
+// computer randomly picks a killer and a weapon
   killer.suspect = suspects[Math.floor(Math.random() * suspects.length)]
   killer.weapon = weapons[Math.floor(Math.random() * weapons.length)]
 
-  instructions.innerHTML = "Please pick a suspect."
+  instructions.innerHTML = "Who do you think did it?"
 
-  // console.log(killer)
+// console.log(killer)
   console.log(killer)
 
   for (var i = 0; i < suspectCards.length; i++) {
     suspectCards[i].addEventListener('click', function(){
     playerGuess.suspect = (this.id)
-    instructions.innerHTML = "You chose " + playerGuess.suspect +". Now choose the weapon they used."
+    instructions.innerHTML = "You chose " + playerGuess.suspect +". Now what weapon did they use."
 
     // if (this.id === killer.suspect.id) {
     //   console.log('you got em')
@@ -85,12 +98,15 @@ startButton.addEventListener('click', function(){
     //   console.log('wrong. try again')
     })
   }
-  if (playerGuess.suspect === killer.suspect.id && playerGuess.weapon === killer.weapon.id){
-    instructions.innerHTML = "You win"
-  } else if ((playerGuess.suspect === killer.suspect.id && playerGuess.weapon !== killer.weapon.id) || (playerGuess.suspect !== killer.suspect.id && playerGuess.weapon === killer.weapon.id)){
-    instructions.innerHTML = "You have one right"
-  } else {
-    instructions.innerHTML = "Sorry, try again"
-    }
 
-  })
+
+
+  // if (playerGuess.suspect === killer.suspect.id && playerGuess.weapon === killer.weapon.id){
+  //   instructions.innerHTML = "You win"
+  // } else if ((playerGuess.suspect === killer.suspect.id && playerGuess.weapon !== killer.weapon.id) || (playerGuess.suspect !== killer.suspect.id && playerGuess.weapon === killer.weapon.id)){
+  //   instructions.innerHTML = "You have one right"
+  // } else {
+  //   instructions.innerHTML = "Sorry, try again"
+  //   }
+  //
+})
