@@ -7,14 +7,14 @@ html {
 }
 
 body {
-  font-family: Lucida Grande;
+  font-family: Chango, Lucida Grande;
   color: #f6f6f6;
   display: block;
   padding: 0;
 }
 
 div {
-  opacity: 0.5;
+  /*opacity: 0.5;*/
   margin: auto;
   border: 1px;
   border-radius: 10px;
@@ -36,33 +36,38 @@ main {
   margin-right: auto;
 }
 
+#instructions {
+  background-color: darkred;
+  color: white;
+  text-align: center;
+  font-size: 40px;
+  float: none;
+  width: 900px;
+  height: 55px;
+  margin-bottom: 20px;
+  padding: 0 auto;
+}
+
 .box {
-  width: 150px;
+  width: 145px;
   height: 200px;
   border: 1px solid white;
   display: inline-block;
 }
 
-#instructions {
-  /*background-color: #D9D8F7;*/
-  color: darkblue;
-  text-align: center;
-  font-style: italic;
-  float: none;
-  width: 622px;
-  height: 25px;
-  margin-top: 10px;
-  padding: 5px;
+.cardCl {
+  opacity: 1.0;
 }
 
 .player {
   text-align: center;
-  width: 150px;
+  width: 250px;
   color: darkblue;
   background-color: yellow;
+  opacity: 0.5;
   display: inline;
-  padding: 10px;
-  margin: 15px;
+  padding: 5px;
+  margin: 10px;
 }
 
 .left {
@@ -75,13 +80,18 @@ main {
 
 button {
   width: 150px;
+  height: 30px;
   font-size: 20px;
-  padding: 10px;
-  border-radius: 20%;
-  margin: 50px 20px 0px 150px;
+  border-radius: 15%;
+  margin: 10px 20px 10px 200px;
+  background-color: green;
 }
 
 img {
   width: inherit;
   height: inherit;
+}
+
+img .suspect {
+  opacity: 1.0
 }

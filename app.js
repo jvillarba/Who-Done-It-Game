@@ -3,6 +3,7 @@ console.log('this is working')
 var startButton = document.getElementById('start')
 var suspectCards = document.getElementsByClassName('suspect')
 var weaponCards = document.getElementsByClassName('weapon')
+var roomCards = document.getElementsByClassName('room')
 var instructions = document.getElementById('instructions')
 var boxes = document.getElementsByClassName('box')
 
@@ -18,34 +19,54 @@ var malletImg = '<img class="weapon" src="images/mallet.png" id="mallet" />'
 var gunImg = '<img class="weapon" src="images/gun.png" id="gun" />'
 var statueImg = '<img class="weapon" src="images/statue.png" id="statue" />'
 var horseshoeImg = '<img class="weapon" src="images/horseshoe.png" id="horseshoe" />'
+var ballroomImg = '<img class="room" src="images/ballroom.png" id="ballroom" />'
+var billiardImg = '<img class="room" src="images/billiard.png" id="billiard" />'
+var conservatoryImg = '<img class="room" src="images/conservatory.png" id="conservatory" />'
+var diningRoomImg = '<img class="room" src="images/diningRoom.png" id="diningRoom" />'
+var kitchenImg = '<img class="room" src="images/kitchen.png" id="kitchen" />'
+var libraryImg = '<img class="room" src="images/library.png" id="library" />'
 var cardImg = '<img class="cardCl" src="images/card.png" id="cardId" />'
 
 var pictures = [
-  scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg, candlestickImg, pipeImg, malletImg, gunImg, statueImg, horseshoeImg
+  scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg,
+  candlestickImg, pipeImg, malletImg, gunImg, statueImg, horseshoeImg,
+  ballroomImg, billiardImg, conservatoryImg, diningRoomImg, kitchenImg, libraryImg
 ]
 var suspects = [
   {name: 'Miss Scarlet', id: 'scarlet'},
   {name: 'Mr Green', id: 'green'},
   {name: 'Professor Plum', id: 'plum'},
-  {name: 'Mrs White', id: 'white'}
+  {name: 'Mrs White', id: 'white'},
+  {name: 'Mrs Peacock', id: 'peacock'},
+  {name: 'Col Mustard', id: 'mustard'}
 ]
 var weapons = [
-  {item: 'candlestick', id: 'candlestick'},
-  {item: 'lead pipe', id: 'pipe'},
-  {item: 'mallet', id: 'mallet'},
-  {item: 'gun', id: 'gun'}
+  {item: 'Candlestick', id: 'candlestick'},
+  {item: 'Lead Pipe', id: 'pipe'},
+  {item: 'Mallet', id: 'mallet'},
+  {item: 'Gun', id: 'gun'},
+  {item: 'Statuette', id: 'statue'},
+  {item: 'Horseshoe', id: 'horseshoe'}
+]
+var rooms = [
+  {item: 'Ballroom', id: 'ballroom'},
+  {item: 'Billiard', id: 'billiard'},
+  {item: 'Conservatory', id: 'mallet'},
+  {item: 'Dining Room', id: 'diningRoom'},
+  {item: 'Kitchen', id: 'kitchen'},
+  {item: 'Library', id: 'library'}
 ]
 var killer = {}
 var playerGuess = {}
 
 var game = {
   player1: {
-    name: "Player 1",
-    score: 0
+      name: "Player 1",
+      // score: 0 ~ placeholder
   },
   player2: {
-    name: "Player 2",
-    score: 0
+      name: "Player 2",
+      // score: 0 ~ placeholder
   }
 }
 
@@ -54,11 +75,13 @@ var currentPlayer = game.player1
 
 function switchTurn(){
   if(currentPlayer == game.player1){
-    currentPlayer = game.player2
-    console.log(currentPlayer)
+      currentPlayer = game.player2
+
+
+//      console.log(currentPlayer)
   } else {
-    currentPlayer = game.player1
-    console.log(currentPlayer)
+      currentPlayer = game.player1
+//      console.log(currentPlayer)
   }
   return currentPlayer
 }
@@ -70,19 +93,19 @@ function switchTurn(){
 
 // CLICKING START BUTTON
 startButton.addEventListener('click', function(){
-    console.log('start game now')
+  console.log('start game now')
 
 // SHUFFLES THE PICTURES ARRAY
   function fisherYates (myArray) {
       var i = myArray.length;
       if ( i == 0 ) return false;
       while ( --i ) {
-        var j = Math.floor( Math.random() * ( i + 1 ) );
-        var tempi = myArray[i];
-        var tempj = myArray[j];
-        myArray[i] = tempj;
-        myArray[j] = tempi;
-     }
+          var j = Math.floor( Math.random() * ( i + 1 ) );
+          var tempi = myArray[i];
+          var tempj = myArray[j];
+          myArray[i] = tempj;
+          myArray[j] = tempi;
+      }
   }
 
 // random generator
@@ -92,28 +115,36 @@ startButton.addEventListener('click', function(){
 //     }
 
 // LAYS OUT THE CHOICES ON THE BOARD
-      for (var i = 0; i < boxes.length; i++) {
-        fisherYates(pictures)
-        boxes[i].innerHTML = pictures.splice(0,1)
-    }
+  for (var i = 0; i < boxes.length; i++) {
+      fisherYates(pictures)
+      boxes[i].innerHTML = pictures.splice(0,1)
+  }
+
+// TESTING IF PUTTING THIS WILL ALLOW ME TO RESET
+  // var pictures = [
+  //     scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg,
+  //     candlestickImg, pipeImg, malletImg, gunImg, statueImg, horseshoeImg,
+  //     ballroomImg, billiardImg, conservatoryImg, diningRoomImg, kitchenImg, libraryImg
+  // ]
 
 // CLEARS KILLER OBJECT FOR NEW GAME
   killer = {}
 
-// COMPUTER RANDOMLY PICKS KILLER & WEAPON
+// COMPUTER RANDOMLY PICKS KILLER, WEAPON, AND ROOM
   killer.suspect = suspects[Math.floor(Math.random() * suspects.length)]
   killer.weapon = weapons[Math.floor(Math.random() * weapons.length)]
+  killer.room = rooms[Math.floor(Math.random() * rooms.length)]
 
 // DISPLAYS KILLER
   console.log(killer)
 
 // PLAYER CHOOSES A SUSPECT
-  instructions.innerHTML = "Pick a suspect"
+  instructions.innerHTML = "Please pick a suspect"
 
   for (var i = 0; i < suspectCards.length; i++) {
       suspectCards[i].addEventListener('click', function(){
       playerGuess.suspect = (this.id)
-      instructions.innerHTML = "You chose " + playerGuess.suspect +". Now, what weapon do you think they used?"
+      instructions.innerHTML = "What weapon did they use?"
       })
   }
   // if (this.id === killer.suspect.id) {
@@ -126,11 +157,17 @@ startButton.addEventListener('click', function(){
   for (var i = 0; i < weaponCards.length; i++) {
       weaponCards[i].addEventListener('click', function(){
       playerGuess.weapon = (this.id)
-      instructions.innerHTML = "You chose the " + playerGuess.weapon
+      instructions.innerHTML = "Now, in which room?"
+      })
+  }
+
+// PLAYER CHOOSES A ROOM
+  for (var i = 0; i < roomCards.length; i++){
+      roomCards[i].addEventListener('click', function(){
+      playerGuess.room = (this.id)
       getWinner()
       switchTurn()
       })
-
   }
   // if (this.id === killer.weapon.id) {
   //   console.log('right weapon')
@@ -138,16 +175,36 @@ startButton.addEventListener('click', function(){
   // }
   //   console.log('wrong. try again')
 
-
-  //
-
   var getWinner = function() {
-    if (playerGuess.suspect === killer.suspect.id && playerGuess.weapon === killer.weapon.id){
-      instructions.innerHTML = "You win"
-    } else if ((playerGuess.suspect === killer.suspect.id && playerGuess.weapon !== killer.weapon.id) || (playerGuess.suspect !== killer.suspect.id && playerGuess.weapon === killer.weapon.id)){
-      instructions.innerHTML = "You have one right"
+      if (playerGuess.suspect === killer.suspect.id &&
+          playerGuess.weapon === killer.weapon.id &&
+          playerGuess.room === killer.room.id)
+    {
+      instructions.innerHTML = currentPlayer + " is the winner!"
+    } else if ((playerGuess.suspect === killer.suspect.id &&
+          playerGuess.weapon === killer.weapon.id &&
+          playerGuess.room !== killer.room.id) || (
+          playerGuess.suspect !== killer.suspect.id &&
+          playerGuess.weapon === killer.weapon.id &&
+          playerGuess.room === killer.room.id) || (
+          playerGuess.suspect === killer.suspect.id &&
+          playerGuess.weapon !== killer.weapon.id &&
+          playerGuess.room === killer.room.id))
+    {
+      instructions.innerHTML = "You have two correct"
+    } else if ((playerGuess.suspect === killer.suspect.id &&
+          playerGuess.weapon !== killer.weapon.id &&
+          playerGuess.room !== killer.room.id) || (
+          playerGuess.suspect !== killer.suspect.id &&
+          playerGuess.weapon === killer.weapon.id &&
+          playerGuess.room !== killer.room.id) || (
+          playerGuess.suspect !== killer.suspect.id &&
+          playerGuess.weapon !== killer.weapon.id &&
+          playerGuess.room === killer.room.id))
+    {
+      instructions.innerHTML = "You have one correct"
     } else {
-      instructions.innerHTML = "Sorry, try again"
+          instructions.innerHTML = "Sorry, try again"
     }
   }
 
