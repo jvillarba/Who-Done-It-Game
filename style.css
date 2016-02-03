@@ -1,21 +1,28 @@
+html {
+  background: url(images/mansion.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 body {
   font-family: Lucida Grande;
   color: #f6f6f6;
   display: block;
-  background-color: darkblue;
   padding: 0;
 }
 
 div {
+  opacity: 0.5;
   margin: auto;
   border: 1px;
   border-radius: 10px;
 }
 
 #container {
-  background-color: darkblue;
-  width: 650px;
-  height: 525px;
+  width: 950px;
+  height: 600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -30,14 +37,14 @@ main {
 }
 
 .box {
-  width: 100px;
-  height: 150px;
+  width: 150px;
+  height: 200px;
   border: 1px solid white;
   display: inline-block;
 }
 
 #instructions {
-  background-color: #D9D8F7;
+  /*background-color: #D9D8F7;*/
   color: darkblue;
   text-align: center;
   font-style: italic;
@@ -49,15 +56,13 @@ main {
 }
 
 .player {
+  text-align: center;
+  width: 150px;
   color: darkblue;
-  background-color: #fff4db;
+  background-color: yellow;
   display: inline;
   padding: 10px;
   margin: 15px;
-}
-
-.player:active {
-  background-color: lime;
 }
 
 .left {
@@ -69,10 +74,11 @@ main {
 }
 
 button {
+  width: 150px;
   font-size: 20px;
   padding: 10px;
   border-radius: 20%;
-  margin: 50px 20px 0px 100px;
+  margin: 50px 20px 0px 150px;
 }
 
 img {

@@ -10,14 +10,18 @@ var scarletImg = '<img class="suspect" src="images/Miss_Scarlett.png" id="scarle
 var greenImg = '<img class="suspect" src="images/Mr_Green.png" id="green" />'
 var plumImg = '<img class="suspect" src="images/Prof_Plum.png" id="plum" />'
 var whiteImg = '<img class="suspect" src="images/Mrs_White.png" id="white" />'
+var peacockImg = '<img class="suspect" src="images/Mrs_Peacock.png" id="peacock" />'
+var mustardImg = '<img class="suspect" src="images/Col_Mustard.png" id="mustard" />'
 var candlestickImg = '<img class="weapon" src="images/candlestick.png" id="candlestick" />'
 var pipeImg = '<img class="weapon" src="images/pipe.png" id="pipe" />'
 var malletImg = '<img class="weapon" src="images/mallet.png" id="mallet" />'
 var gunImg = '<img class="weapon" src="images/gun.png" id="gun" />'
+var statueImg = '<img class="weapon" src="images/statue.png" id="statue" />'
+var horseshoeImg = '<img class="weapon" src="images/horseshoe.png" id="horseshoe" />'
 var cardImg = '<img class="cardCl" src="images/card.png" id="cardId" />'
 
 var pictures = [
-  scarletImg, greenImg, plumImg, whiteImg, candlestickImg, pipeImg, malletImg, gunImg
+  scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg, candlestickImg, pipeImg, malletImg, gunImg, statueImg, horseshoeImg
 ]
 var suspects = [
   {name: 'Miss Scarlet', id: 'scarlet'},
