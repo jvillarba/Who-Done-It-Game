@@ -14,11 +14,11 @@ var candlestickImg = '<img class="weapon" src="images/candlestick.png" id="candl
 var pipeImg = '<img class="weapon" src="images/pipe.png" id="pipe" />'
 var malletImg = '<img class="weapon" src="images/mallet.png" id="mallet" />'
 var gunImg = '<img class="weapon" src="images/gun.png" id="gun" />'
+var cardImg = '<img class="cardCl" src="images/card.png" id="cardId" />'
 
 var pictures = [
   scarletImg, greenImg, plumImg, whiteImg, candlestickImg, pipeImg, malletImg, gunImg
 ]
-
 var suspects = [
   {name: 'Miss Scarlet', id: 'scarlet'},
   {name: 'Mr Green', id: 'green'},
@@ -34,18 +34,22 @@ var weapons = [
 var killer = {}
 var playerGuess = {}
 
+// random generator
+  function pickRandom(x){
+    x = Math.floor(Math.random() * boxes.length)
+    return x
+  }
+
+// lays out the choices
+  while (pictures.length > 0) {
+    boxes[pickRandom()].innerHTML = pictures.splice(0,1)
+  }
+
 // pressing "Reset"
 startButton.addEventListener('click', function(){
   console.log('reset game now')
 
-  // lays out the choices
-  for insertImg(i){
-    if (boxes[i] === '') {
-      boxes[Math.floor(Math.random() * boxes.length)].innerHTML = pictures.splice(0,1)
-    }
-  }
-
-  // clears killer variable
+// clears killer variable
   killer = {}
 
   // computer randomly picks a killer and a weapon
