@@ -32,7 +32,7 @@ main {
 .box {
   width: 100px;
   height: 150px;
-  border: 1px solid blue;
+  border: 1px solid white;
   display: inline-block;
 }
 
@@ -54,6 +54,10 @@ main {
   display: inline;
   padding: 10px;
   margin: 15px;
+}
+
+.player:active {
+  background-color: lime;
 }
 
 .left {
