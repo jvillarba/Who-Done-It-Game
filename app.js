@@ -7,6 +7,9 @@ var roomCards = document.getElementsByClassName('room')
 var instructions = document.getElementById('instructions')
 var boxes = document.getElementsByClassName('box')
 
+var $players = $('.player')
+$players.hide()
+
 var scarletImg = '<img class="suspect" src="images/Miss_Scarlett.png" id="scarlet" />'
 var greenImg = '<img class="suspect" src="images/Mr_Green.png" id="green" />'
 var plumImg = '<img class="suspect" src="images/Prof_Plum.png" id="plum" />'
@@ -76,11 +79,13 @@ var currentPlayer = game.player1
 function switchTurn(){
   if(currentPlayer == game.player1){
       currentPlayer = game.player2
-
-
+      $("#right").css("opacity", 1.0);
+      $("#left").css("opacity", 0.5);
 //      console.log(currentPlayer)
   } else {
       currentPlayer = game.player1
+      $("#left").css("opacity", 1.0);
+      $("#right").css("opacity", 0.5);
 //      console.log(currentPlayer)
   }
   return currentPlayer
@@ -94,6 +99,10 @@ function switchTurn(){
 // CLICKING START BUTTON
 startButton.addEventListener('click', function(){
   console.log('start game now')
+
+  $players.show(200)
+  $('#right').css("opacity",0.5)
+
 
 // SHUFFLES THE PICTURES ARRAY
   function fisherYates (myArray) {
@@ -120,13 +129,6 @@ startButton.addEventListener('click', function(){
       boxes[i].innerHTML = pictures.splice(0,1)
   }
 
-// TESTING IF PUTTING THIS WILL ALLOW ME TO RESET
-  // var pictures = [
-  //     scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg,
-  //     candlestickImg, pipeImg, malletImg, gunImg, statueImg, horseshoeImg,
-  //     ballroomImg, billiardImg, conservatoryImg, diningRoomImg, kitchenImg, libraryImg
-  // ]
-
 // CLEARS KILLER OBJECT FOR NEW GAME
   killer = {}
 
@@ -135,36 +137,47 @@ startButton.addEventListener('click', function(){
   killer.weapon = weapons[Math.floor(Math.random() * weapons.length)]
   killer.room = rooms[Math.floor(Math.random() * rooms.length)]
 
+// PLAYER CHOOSES A SUSPECT
+  instructions.innerHTML = "Please pick a suspect"
+// console.log('asking for suspect')
+$('.suspect').css("opacity", 1)
+
 // DISPLAYS KILLER
   console.log(killer)
 
-// PLAYER CHOOSES A SUSPECT
-  instructions.innerHTML = "Please pick a suspect"
-
   for (var i = 0; i < suspectCards.length; i++) {
+      // $(".suspect").css("opacity", 1.0)
       suspectCards[i].addEventListener('click', function(){
       playerGuess.suspect = (this.id)
       instructions.innerHTML = "What weapon did they use?"
+// console.log('asking for weapon')
+      $('.suspect').css("opacity",0.4)
+      $('.weapon').css("opacity",1)
       })
   }
   // if (this.id === killer.suspect.id) {
-  //   console.log('you got em')
   //   return
   // }
   //   console.log('wrong. try again')
 
 // PLAYER CHOOSES A WEAPON
   for (var i = 0; i < weaponCards.length; i++) {
+      // $(".weapon").css("opacity", 1.0)
       weaponCards[i].addEventListener('click', function(){
       playerGuess.weapon = (this.id)
       instructions.innerHTML = "Now, in which room?"
+// console.log('asking for room')
+      $('.weapon').css("opacity",0.4)
+      $('.room').css("opacity",1)
       })
   }
 
 // PLAYER CHOOSES A ROOM
   for (var i = 0; i < roomCards.length; i++){
+      // $(".room").css("opacity", 1.0)
       roomCards[i].addEventListener('click', function(){
       playerGuess.room = (this.id)
+      $('.room').css("opacity",0.4)
       getWinner()
       switchTurn()
       })
@@ -175,12 +188,13 @@ startButton.addEventListener('click', function(){
   // }
   //   console.log('wrong. try again')
 
+// FUNCTION TO DETERMINE A WINNER
   var getWinner = function() {
       if (playerGuess.suspect === killer.suspect.id &&
           playerGuess.weapon === killer.weapon.id &&
           playerGuess.room === killer.room.id)
     {
-      instructions.innerHTML = currentPlayer + " is the winner!"
+      instructions.innerHTML = "WE HAVE A WINNER!"
     } else if ((playerGuess.suspect === killer.suspect.id &&
           playerGuess.weapon === killer.weapon.id &&
           playerGuess.room !== killer.room.id) || (
@@ -191,7 +205,8 @@ startButton.addEventListener('click', function(){
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room === killer.room.id))
     {
-      instructions.innerHTML = "You have two correct"
+      instructions.innerHTML = currentPlayer.name+ " had 2 guesses correct."
+
     } else if ((playerGuess.suspect === killer.suspect.id &&
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room !== killer.room.id) || (
@@ -202,20 +217,20 @@ startButton.addEventListener('click', function(){
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room === killer.room.id))
     {
-      instructions.innerHTML = "You have one correct"
+      instructions.innerHTML = currentPlayer.name+ " had 1 guess correct."
+
     } else {
-          instructions.innerHTML = "Sorry, try again"
+          instructions.innerHTML = "Wrong!  Next player choose a suspect"
+          $('.suspect').css("opacity",1)
     }
   }
 
-    //   if (isWinner1()) {
-    //     return 'player1';
-    //   }
-    //   if (isWinner2()) {
-    //     return 'player2';
-    //   }
-    //   return null;
-    //
+// TESTING IF PUTTING THIS WILL ALLOW ME TO RESET
+    // var pictures = [
+    //     scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg,
+    //     candlestickImg, pipeImg, malletImg, gunImg, statueImg, horseshoeImg,
+    //     ballroomImg, billiardImg, conservatoryImg, diningRoomImg, kitchenImg, libraryImg
+    // ]
 
   //
   // while (getWinner !== true) {

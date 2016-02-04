@@ -5,14 +5,11 @@
     <title>WHO DUN IT?</title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Chango' rel='stylesheet' type='text/css'>
+    <script src="jquery-2.2.0.js"></script>
   </head>
   <body>
     <div id="container">
-    <header>
-      <h1></h1>
-    </header>
-
-    <main><img src="images/cover.png" />
+    <main><img id="cover" src="images/cover.png" />
         <div class="board"></div>
           <div id="instructions">Are you ready to play?</div>
           <div class="box"><img class="cardCl" src="images/card.png" id="cardId" /></div>
@@ -36,8 +33,8 @@
           <div class="box"><img class="cardCl" src="images/card.png" id="cardId" /></div>
           <div class="box"><img class="cardCl" src="images/card.png" id="cardId" /></div>
           <br>
-          <div class="player left">Player 1</div>
-          <div class="player right">Player 2</div>
+          <div class="player" id="left">Player 1</div>
+          <div class="player" id="right">Player 2</div>
           <br>
           <button id="start">Play</button>
     </main>

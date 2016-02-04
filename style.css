@@ -21,7 +21,7 @@ div {
 }
 
 #container {
-  width: 950px;
+  width: 915px;
   height: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -40,17 +40,17 @@ main {
   background-color: darkred;
   color: white;
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   float: none;
   width: 900px;
-  height: 55px;
-  margin-bottom: 20px;
+  height: 40px;
+  margin-bottom: 5px;
   padding: 0 auto;
 }
 
 .box {
   width: 145px;
-  height: 200px;
+  height: 190px;
   border: 1px solid white;
   display: inline-block;
 }
@@ -60,21 +60,21 @@ main {
 }
 
 .player {
+  font-size: 25px;
   text-align: center;
   width: 250px;
   color: darkblue;
   background-color: yellow;
-  opacity: 0.5;
   display: inline;
-  padding: 5px;
-  margin: 10px;
+  padding: 0 auto;
+  margin: 5px 30px 20px 30px;
 }
 
-.left {
+#left {
   float: left;
 }
 
-.right {
+#right {
   float: right
 }
 
@@ -83,15 +83,12 @@ button {
   height: 30px;
   font-size: 20px;
   border-radius: 15%;
-  margin: 10px 20px 10px 200px;
+  margin: 5px 0px 10px 70px;
   background-color: green;
 }
 
 img {
+  opacity: 0.4;
   width: inherit;
   height: inherit;
-}
-
-img .suspect {
-  opacity: 1.0
 }
