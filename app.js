@@ -10,6 +10,9 @@ var boxes = document.getElementsByClassName('box')
 var $players = $('.player')
 $players.hide()
 
+var $cover = $('#cover')
+$cover.fadeOut(4000)
+
 var scarletImg = '<img class="suspect" src="images/Miss_Scarlett.png" id="scarlet" />'
 var greenImg = '<img class="suspect" src="images/Mr_Green.png" id="green" />'
 var plumImg = '<img class="suspect" src="images/Prof_Plum.png" id="plum" />'
@@ -54,7 +57,7 @@ var weapons = [
 var rooms = [
   {item: 'Ballroom', id: 'ballroom'},
   {item: 'Billiard', id: 'billiard'},
-  {item: 'Conservatory', id: 'mallet'},
+  {item: 'Conservatory', id: 'conservatory'},
   {item: 'Dining Room', id: 'diningRoom'},
   {item: 'Kitchen', id: 'kitchen'},
   {item: 'Library', id: 'library'}
@@ -80,12 +83,12 @@ function switchTurn(){
   if(currentPlayer == game.player1){
       currentPlayer = game.player2
       $("#right").css("opacity", 1.0);
-      $("#left").css("opacity", 0.5);
+      $("#left").fadeTo(3000, 0.3);
 //      console.log(currentPlayer)
   } else {
       currentPlayer = game.player1
       $("#left").css("opacity", 1.0);
-      $("#right").css("opacity", 0.5);
+      $("#right").fadeTo(3000, 0.3);
 //      console.log(currentPlayer)
   }
   return currentPlayer
@@ -100,9 +103,8 @@ function switchTurn(){
 startButton.addEventListener('click', function(){
   console.log('start game now')
 
-  $players.show(200)
-  $('#right').css("opacity",0.5)
-
+  $players.show()
+  $('#right').css("opacity",0.3)
 
 // SHUFFLES THE PICTURES ARRAY
   function fisherYates (myArray) {
@@ -146,7 +148,6 @@ $('.suspect').css("opacity", 1)
   console.log(killer)
 
   for (var i = 0; i < suspectCards.length; i++) {
-      // $(".suspect").css("opacity", 1.0)
       suspectCards[i].addEventListener('click', function(){
       playerGuess.suspect = (this.id)
       instructions.innerHTML = "What weapon did they use?"
@@ -194,7 +195,7 @@ $('.suspect').css("opacity", 1)
           playerGuess.weapon === killer.weapon.id &&
           playerGuess.room === killer.room.id)
     {
-      instructions.innerHTML = "WE HAVE A WINNER!"
+      instructions.innerHTML = "CONGRATULATIONS! WE HAVE A WINNER!"
     } else if ((playerGuess.suspect === killer.suspect.id &&
           playerGuess.weapon === killer.weapon.id &&
           playerGuess.room !== killer.room.id) || (
@@ -205,8 +206,9 @@ $('.suspect').css("opacity", 1)
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room === killer.room.id))
     {
-      instructions.innerHTML = currentPlayer.name+ " had 2 guesses correct."
-
+      instructions.innerHTML = "Wow! " +currentPlayer.name+ " had two correct guesses."
+          $('.suspect').css("opacity",1)
+          // instructions.innerHTML = "Next player choose a suspect"
     } else if ((playerGuess.suspect === killer.suspect.id &&
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room !== killer.room.id) || (
@@ -217,10 +219,11 @@ $('.suspect').css("opacity", 1)
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room === killer.room.id))
     {
-      instructions.innerHTML = currentPlayer.name+ " had 1 guess correct."
-
+      instructions.innerHTML = "Nice... " +currentPlayer.name+ " had one correct guess."
+          $('.suspect').css("opacity",1)
+          // instructions.innerHTML = "Next player choose a suspect"
     } else {
-          instructions.innerHTML = "Wrong!  Next player choose a suspect"
+          instructions.innerHTML = "Wrong guess!  Next player choose a suspect"
           $('.suspect').css("opacity",1)
     }
   }
