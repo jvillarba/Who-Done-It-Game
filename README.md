@@ -1,28 +1,43 @@
-# WHO DONE IT Game
-GA WDI_SM_21 Project One - ID Caribbean Reef Fish Game
+# WHO? HOW? WHERE?
+![Image](../WDI_SM_21/resources/assets/ga-icon-medium.png)
 
-This game will test your memory and deductive reasoning.
+## WDI_SM_21 Project One - A game using elements from the classic Parker Brothers' Game Clue 
 
-INSTRUCTIONS
-1 You are the detective
-2 minimum 2 Players taking turns
-3 Players take turns choosing a suspect and a weapon
-4 First play to select the correct suspect & weapon WINS
+![](images/cover.png) 
 
-NEED
-START/RESTART GAME BUTTON
-6 Suspects ~ graphics
-6 Weapons ~ graphics
-Random layout of suspects and weapons
-WINNER
+## This game will test your memory and deductive reasoning. 
 
-WANT
-+3 Suspects
-+3 Weapons
-9 Rooms
-Animation - images turn
+```
+**INSTRUCTIONS**
+
+1. You are the detective picked to solve this mystery
+2. Two players will each take a turn guessing
+3. Each player chooses one suspect, one weapon, and one room at each turn
+4. The first player to correctly select the suspect, weapon, and room WINS
+
+**CONTENTS**
+
+* START/RESTART GAME BUTTON
+* 6 Suspects
+* 6 Weapons
+* 6 Rooms
+* Random layout of suspects, weapons, and rooms
+* ONE WINNER
+```
+NEED:
+Suspects, Weapons, Rooms
+Animation - images, buttons, etc.
 Correct suspect, weapon & room WINS
+
+WANT:
 Music / Sound FX
 Choose a detective? (Sherlock Holmes, Peirot, Miss Marple, etc.)
 +1 Player
+
+CREDIT: 
+Artwork/creative from [The Art of Murder](http://www.theartofmurder.com/) website was instrumental in making this game possible
+
+---
+This screen shot shows elements of the game with the background and card layout.
+![](images/Screen Shot.png)
 
