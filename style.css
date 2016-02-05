@@ -8,7 +8,6 @@ html {
 
 body {
   font-family: Chango, Lucida Grande;
-  color: #f6f6f6;
   display: block;
   padding: 0;
 }
@@ -20,14 +19,25 @@ div {
 }
 
 #container {
-  width: 930px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
 h1 {
-  margin: 15px;
+  padding: 0;
+  margin: 0 auto;
+  font-size: 50px;
+  text-align: center;
+  /*color: #ff8080;*/
+}
+
+h1.method1 {
+	background: -webkit-linear-gradient(top, white, #ff8080);
+	background: linear-gradient(top, white, #ff8080);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 main {
@@ -35,38 +45,19 @@ main {
   margin-right: auto;
 }
 
-#instructions {
-  background-color: darkred;
-  color: white;
-  text-align: center;
-  font-size: 30px;
-  float: left;
-  width: 940px;
-  height: 40px;
-  margin-bottom: 5px;
-  padding: 0 auto;
+.spacer {
+  width: 100%;
+  height: 90px;
 }
-
-.box {
-  width: 145px;
-  height: 190px;
-  border: 1px solid white;
-  display: inline-block;
-}
-
-.cardCl, #cover {
-  opacity: 1.0;
-}
-
 .player {
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
-  width: 250px;
-  color: darkblue;
-  background-color: yellow;
+  width: 275px;
+  color: darkred;
   display: inline;
   padding: 0 auto;
-  margin: 5px 30px 20px 30px;
+  margin: 0px 30px 5px 30px;
+  background-color: yellow;
 }
 
 #left {
@@ -77,12 +68,41 @@ main {
   float: right
 }
 
+#instructions {
+  background-color: green;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  float: left;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 0 auto;
+}
+
+.box {
+  width: 170px;
+  height: 197px;
+  margin-right: 11px;
+  margin-left: 19px;
+  border: 1px solid white;
+  display: inline-block;
+}
+
+.cardCl, #cover {
+  opacity: 1.0;
+}
+
 button {
-  width: 150px;
-  height: 30px;
+  position: absolute;
+  margin-bottom: 5px;
+  margin-left: 45%;
+  color: white;
+  width: 160px;
+  height: 35px;
   font-size: 20px;
   border-radius: 15px;
-  margin: 5px 0px 10px 70px;
+  /*margin: 5px 0px 15px 72px;*/
   background-color: green;
 }
 
