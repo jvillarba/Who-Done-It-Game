@@ -7,29 +7,28 @@
 
 >** This game will test your memory and deductive reasoning.**
 
+```
+INSTRUCTIONS
 
-
-###INSTRUCTIONS
----
 1. You are the detective picked to solve this mystery
 2. Two players will each take a turn guessing
 3. Each player chooses one suspect, one weapon, and one room at each turn
 4. The first player to correctly select the suspect, weapon, and room WINS
 
-###CONTENTS
----
+CONTENTS
+
 * START/RESTART GAME BUTTON
 * 6 Suspects
 * 6 Weapons
 * 6 Rooms
 * Random layout of suspects, weapons, and rooms
 * ONE WINNER
-
+```
 ####**User Stories**
 ---
 As a player, I want the game to be thoughtful and fun.
 
-As a player, I control of the flow and timing of the game. 
+As a player, I control the flow and timing of the game. 
 
 ####**Game requirements:**
 ---
@@ -60,4 +59,7 @@ Artwork/creative from [The Art of Murder](http://www.theartofmurder.com/) websit
 
 ---
 This screen shot shows elements of the game with the background and card layout.
+
 ![](images/Screen Shot.png)
+
+I originally started the game with a few suspects and weapons. Once the variables and functions were in place, I was able to expand the game to include more.
