@@ -2,16 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>WHO DUN IT?</title>
+    <title>WHO DID IT?</title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Chango' rel='stylesheet' type='text/css'>
     <script src="jquery-2.2.0.js"></script>
+    <script src="dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+    <audio id="suspectSnd">
+        <source src="sounds/powerUp4.wav" type="audio/wav"></source>
+    </audio>
+    <audio id="weaponSnd">
+        <source src="sounds/powerUp5.wav" type="audio/wav"></source>
+    </audio>
+    <audio id="roomSnd">
+        <source src="sounds/powerUp6.wav" type="audio/wav"></source>
+    </audio>
+    <audio id="taDaSnd">
+        <source src="sounds/taDa.wav" type="audio/wav"></source>
+    </audio>
   </head>
   <body>
     <div id="container">
     <main><img id="cover" src="images/cover.png" />
         <div class="board"></div>
-          <div id="instructions">Are you ready to play?</div>
+          <div id="instructions">Press here when you are ready to play</div>
           <div class="box"><img class="cardCl" src="images/card.png" id="cardId" /></div>
           <div class="box"><img class="cardCl" src="images/card.png" id="cardId" /></div>
           <div class="box"><img class="cardCl" src="images/card.png" id="cardId" /></div>
@@ -36,7 +50,8 @@
           <div class="player" id="left">Player 1</div>
           <div class="player" id="right">Player 2</div>
           <br>
-          <button id="start">Play</button>
+          <!-- <button id="start">Play</button> -->
+          <button id="reset">Restart Game</button>
     </main>
 
     <script src="app.js"></script>

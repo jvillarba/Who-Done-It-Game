@@ -1,17 +1,20 @@
 console.log('this is working')
 
 var startButton = document.getElementById('start')
+var resetButton = document.getElementById('reset')
 var suspectCards = document.getElementsByClassName('suspect')
 var weaponCards = document.getElementsByClassName('weapon')
 var roomCards = document.getElementsByClassName('room')
 var instructions = document.getElementById('instructions')
 var boxes = document.getElementsByClassName('box')
 
-var $players = $('.player')
-$players.hide()
+// HIDES PLAYERS BEFORE GAME STARTS
+// var $players = $('.player')
+// $players.hide()
 
-var $cover = $('#cover')
-$cover.fadeOut(4000)
+// var $starts = $('#start')
+// var $resets = $('#reset')
+// $resets.hide()
 
 var scarletImg = '<img class="suspect" src="images/Miss_Scarlett.png" id="scarlet" />'
 var greenImg = '<img class="suspect" src="images/Mr_Green.png" id="green" />'
@@ -83,28 +86,37 @@ function switchTurn(){
   if(currentPlayer == game.player1){
       currentPlayer = game.player2
       $("#right").css("opacity", 1.0);
-      $("#left").fadeTo(3000, 0.3);
+      $("#left").fadeTo(3000, 0.2);
 //      console.log(currentPlayer)
   } else {
       currentPlayer = game.player1
       $("#left").css("opacity", 1.0);
-      $("#right").fadeTo(3000, 0.3);
+      $("#right").fadeTo(3000, 0.2);
 //      console.log(currentPlayer)
   }
   return currentPlayer
 }
 
-  // ADDS SCORING FUNCTION
-  // function incrementScore(){
-  //   currentPlayer.score += 1
-  // }
+// SOUND FILES
+var $sound1 = $('#suspectSnd')[0]
+var $sound2 = $('#weaponSnd')[0]
+var $sound3 = $('#roomSnd')[0]
+var $taDa = $('#taDaSnd')[0]
+
+// GAME START ANIMATION FILE
+var $cover = $('#cover')
 
 // CLICKING START BUTTON
-startButton.addEventListener('click', function(){
+instructions.addEventListener('click', function(){
   console.log('start game now')
+  $cover.fadeOut(1000)
+  // instructions.innerHTML = "Who? How? Where?" ~ move to header?
 
-  $players.show()
+  // $players.show()
   $('#right').css("opacity",0.3)
+
+  // $starts.hide()
+  // $resets.show()
 
 // SHUFFLES THE PICTURES ARRAY
   function fisherYates (myArray) {
@@ -140,7 +152,8 @@ startButton.addEventListener('click', function(){
   killer.room = rooms[Math.floor(Math.random() * rooms.length)]
 
 // PLAYER CHOOSES A SUSPECT
-  instructions.innerHTML = "Please pick a suspect"
+  instructions.innerHTML = "Please pick a suspect."
+
 // console.log('asking for suspect')
 $('.suspect').css("opacity", 1)
 
@@ -149,7 +162,13 @@ $('.suspect').css("opacity", 1)
 
   for (var i = 0; i < suspectCards.length; i++) {
       suspectCards[i].addEventListener('click', function(){
-      playerGuess.suspect = (this.id)
+          $sound1.play()
+          // if (this.class === "suspects") {
+            playerGuess.suspect = (this.id)
+          // } else {
+          //   instructions.innerHTML = "Wrong choice. Please select a suspect."
+          // }
+
       instructions.innerHTML = "What weapon did they use?"
 // console.log('asking for weapon')
       $('.suspect').css("opacity",0.4)
@@ -165,6 +184,7 @@ $('.suspect').css("opacity", 1)
   for (var i = 0; i < weaponCards.length; i++) {
       // $(".weapon").css("opacity", 1.0)
       weaponCards[i].addEventListener('click', function(){
+        $sound2.play()
       playerGuess.weapon = (this.id)
       instructions.innerHTML = "Now, in which room?"
 // console.log('asking for room')
@@ -177,8 +197,10 @@ $('.suspect').css("opacity", 1)
   for (var i = 0; i < roomCards.length; i++){
       // $(".room").css("opacity", 1.0)
       roomCards[i].addEventListener('click', function(){
+        $sound3.play()
       playerGuess.room = (this.id)
       $('.room').css("opacity",0.4)
+      console.log(playerGuess)
       getWinner()
       switchTurn()
       })
@@ -195,7 +217,11 @@ $('.suspect').css("opacity", 1)
           playerGuess.weapon === killer.weapon.id &&
           playerGuess.room === killer.room.id)
     {
-      instructions.innerHTML = "CONGRATULATIONS! WE HAVE A WINNER!"
+      instructions.innerHTML = "CONGRATULATIONS!"
+      swal(
+          "We have a winner!"
+      )
+      $taDa.play()
     } else if ((playerGuess.suspect === killer.suspect.id &&
           playerGuess.weapon === killer.weapon.id &&
           playerGuess.room !== killer.room.id) || (
@@ -206,9 +232,14 @@ $('.suspect').css("opacity", 1)
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room === killer.room.id))
     {
-      instructions.innerHTML = "Wow! " +currentPlayer.name+ " had two correct guesses."
-          $('.suspect').css("opacity",1)
-          // instructions.innerHTML = "Next player choose a suspect"
+      // instructions.innerHTML = "Wow! " +currentPlayer.name+ " had two correct guesses."
+      swal({
+          title: "Wow! Two correct guesses.",
+          timer: 3000,
+          showConfirmButton: false
+      });
+      instructions.innerHTML = "Choose a suspect"
+      $('.suspect').css("opacity",1)
     } else if ((playerGuess.suspect === killer.suspect.id &&
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room !== killer.room.id) || (
@@ -219,12 +250,23 @@ $('.suspect').css("opacity", 1)
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room === killer.room.id))
     {
-      instructions.innerHTML = "Nice... " +currentPlayer.name+ " had one correct guess."
-          $('.suspect').css("opacity",1)
-          // instructions.innerHTML = "Next player choose a suspect"
+      // instructions.innerHTML = "Nice... " +currentPlayer.name+ " had one correct guess."
+      instructions.innerHTML = "Choose a suspect"
+      swal({
+          title: "Nice! One correct guess.",
+          timer: 3000,
+          showConfirmButton: false
+      });
+      $('.suspect').css("opacity",1)
     } else {
-          instructions.innerHTML = "Wrong guess!  Next player choose a suspect"
-          $('.suspect').css("opacity",1)
+      // instructions.innerHTML = "Wrong guess!  Next player choose a suspect"
+      instructions.innerHTML = "Choose a suspect"
+      swal({
+          title: "All three guess are wrong!",
+          timer: 3000,
+          showConfirmButton: false
+      });
+      $('.suspect').css("opacity",1)
     }
   }
 
@@ -239,4 +281,8 @@ $('.suspect').css("opacity", 1)
   // while (getWinner !== true) {
   //   startButton.innerText="Reset Game"
   // }
+})
+
+resetButton.addEventListener('click', function(){
+  location.reload();
 })

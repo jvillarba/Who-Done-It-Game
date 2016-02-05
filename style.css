@@ -59,14 +59,14 @@ main {
 }
 
 .player {
-  font-size: 25px;
+  font-size: 30px;
   text-align: center;
   width: 250px;
-  color: darkblue;
-  background-color: yellow;
+  color: darkred;
   display: inline;
   padding: 0 auto;
-  margin: 5px 30px 20px 30px;
+  margin: 5px 30px 30px 30px;
+  background-color: yellow;
 }
 
 #left {
@@ -78,11 +78,15 @@ main {
 }
 
 button {
+  position: absolute;
+  margin-bottom: 5px;
+  margin-left: 6%;
+  color: white;
   width: 150px;
-  height: 30px;
+  height: 35px;
   font-size: 20px;
   border-radius: 15px;
-  margin: 5px 0px 10px 70px;
+  /*margin: 5px 0px 15px 72px;*/
   background-color: green;
 }
 
