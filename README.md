@@ -3,39 +3,60 @@
 ## WDI_SM_21 Project One 
 ## A game using elements from the classic board Game 'Clue'
 
-![](images/clue.jpg)![](images/.png)
+![](images/victimCardBack.png)![](images/clueGame.png)![](images/clue.jpg)
 
-## This game will test your memory and deductive reasoning.
+>** This game will test your memory and deductive reasoning.**
 
-```
-**INSTRUCTIONS**
 
+
+###INSTRUCTIONS
+---
 1. You are the detective picked to solve this mystery
 2. Two players will each take a turn guessing
 3. Each player chooses one suspect, one weapon, and one room at each turn
 4. The first player to correctly select the suspect, weapon, and room WINS
 
-**CONTENTS**
-
+###CONTENTS
+---
 * START/RESTART GAME BUTTON
 * 6 Suspects
 * 6 Weapons
 * 6 Rooms
 * Random layout of suspects, weapons, and rooms
 * ONE WINNER
-```
-NEED:
-Suspects, Weapons, Rooms
-Animation - images, buttons, etc.
-Correct suspect, weapon & room WINS
 
-WANT:
-Music / more Sound FX
-Choose a detective? (Sherlock Holmes, Peirot, Miss Marple, etc.)
-Add third (or more) player(s)
+####**User Stories**
+---
+As a player, I want the game to be thoughtful and fun.
 
-CREDIT:
-Artwork/creative from [The Art of Murder](http://www.theartofmurder.com/) website was instrumental in making this game possible
+As a player, I control of the flow and timing of the game. 
+
+####**Game requirements:**
+---
+* Suspects, Weapons, Rooms
+* Animation - images, buttons, etc.
+* Correct suspect, weapon & room WINS
+
+####**Future Implementation:**
+---
+* Music / more Sound FX
+* Choose a player detective? (e.g., Sherlock Holmes, Peirot, Miss Marple, Charlie Chan, Colombo)
+* Add third (or more) player(s)
+* Improve styling
+
+####**Technologies/Frameworks:**
+---
+* HTML
+* CSS
+* jQuery
+
+####**Credits:**
+Artwork/creative from [The Art of Murder](http://www.theartofmurder.com/) website was very instrumental in making this game possible. Coding help from the following:
+
+ * [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+ * [SweetAlert](http://t4t5.github.io/sweetalert/)
+ * [BFXR](http://www.bfxr.net/)
+ * [SoundBible.com](http://soundbible.com/about.php)
 
 ---
 This screen shot shows elements of the game with the background and card layout.
