@@ -25,30 +25,32 @@ CONTENTS
 * ONE WINNER
 ```
 ####**User Stories**
----
+
 As a player, I want the game to be thoughtful and fun.
 
 As a player, I control the flow and timing of the game. 
 
-####**Game requirements:**
 ---
+####**Game requirements:**
 * Suspects, Weapons, Rooms
 * Animation - images, buttons, etc.
 * Correct suspect, weapon & room WINS
 
+---
 ####**Future Implementation:**
----
+* More suspects, weapons, or rooms
 * Music / more Sound FX
-* Choose a player detective? (e.g., Sherlock Holmes, Peirot, Miss Marple, Charlie Chan, Colombo)
+* Choose a player detective? (e.g., Holmes, Peirot, Marple, Colombo) And, enter name.
 * Add third (or more) player(s)
-* Improve styling
+* Improve styling - limiting selections
 
-####**Technologies/Frameworks:**
 ---
+####**Technologies/Frameworks:**
 * HTML
 * CSS
 * jQuery
 
+---
 ####**Credits:**
 Artwork/creative from [The Art of Murder](http://www.theartofmurder.com/) website was very instrumental in making this game possible. Coding help from the following:
 
@@ -62,4 +64,4 @@ This screen shot shows elements of the game with the background and card layout.
 
 ![](images/Screen Shot.png)
 
-I originally started the game with a few suspects and weapons. Once the variables and functions were in place, I was able to expand the game to include more.
+I originally started the game with a few suspects and weapons. Once the variables and functions were in place, I was able to scale the game to include more suspects, weapons, and add rooms.
