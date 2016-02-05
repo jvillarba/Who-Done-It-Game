@@ -1,11 +1,11 @@
 # WHO? HOW? WHERE?
-![Image](../WDI_SM_21/resources/assets/ga-icon-medium.png)
 
-## WDI_SM_21 Project One - A game using elements from the classic Parker Brothers' Game Clue 
+## WDI_SM_21 Project One 
+## A game using elements from the classic board Game 'Clue'
 
-![](images/cover.png) 
+![](images/clue.jpg)![](images/.png)
 
-## This game will test your memory and deductive reasoning. 
+## This game will test your memory and deductive reasoning.
 
 ```
 **INSTRUCTIONS**
@@ -30,14 +30,13 @@ Animation - images, buttons, etc.
 Correct suspect, weapon & room WINS
 
 WANT:
-Music / Sound FX
+Music / more Sound FX
 Choose a detective? (Sherlock Holmes, Peirot, Miss Marple, etc.)
-+1 Player
+Add third (or more) player(s)
 
-CREDIT: 
+CREDIT:
 Artwork/creative from [The Art of Murder](http://www.theartofmurder.com/) website was instrumental in making this game possible
 
 ---
 This screen shot shows elements of the game with the background and card layout.
 ![](images/Screen Shot.png)
-
