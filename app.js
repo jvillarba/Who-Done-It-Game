@@ -8,15 +8,17 @@ var roomCards = document.getElementsByClassName('room')
 var instructions = document.getElementById('instructions')
 var boxes = document.getElementsByClassName('box')
 
-// HIDES PLAYERS BEFORE GAME STARTS
+// HIDES ASSETS BEFORE GAME STARTS
 var $players = $('.player')
 $players.hide()
 var $spacers = $('.spacer')
 $spacers.hide()
+var $boxes = $('.box')
+$boxes.hide()
+var $resets = $('#reset')
+$resets.hide()
 
-// var $starts = $('#start')
-// var $resets = $('#reset')
-// $resets.hide()
+// var $starts = $('#start') ~ NOT NEEDED WITH NEW LOCATION
 
 var scarletImg = '<img class="suspect" src="images/Miss_Scarlett.png" id="scarlet" />'
 var greenImg = '<img class="suspect" src="images/Mr_Green.png" id="green" />'
@@ -116,12 +118,14 @@ instructions.addEventListener('click', function(){
   $spacers.show()
   setTimeout(function(){
     $cover.fadeOut(3000)
+    $resets.fadeIn()
+    $boxes.fadeIn()
     $('.suspect').css("opacity",1)
     $('#right').css("opacity",0.2)
     $spacers.fadeOut(3000)
 
-  // $starts.hide()
-  // $resets.show()
+  // $starts.hide() ~ NOT NEEDED WITH NEW LOCATION
+
 }, 7000)
 
 // SHUFFLES THE PICTURES ARRAY
