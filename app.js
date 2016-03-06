@@ -120,7 +120,7 @@ instructions.addEventListener('click', function(){
   $murderSound.play()
   $spacers.show()
   setTimeout(function(){
-    $cover.fadeOut(2000)
+    $cover.fadeOut(1000)
     $resets.fadeIn()
     $boxes.fadeIn()
     $('.suspect').css("opacity",1)
@@ -211,12 +211,12 @@ instructions.addEventListener('click', function(){
                   $('.room').css("opacity",0.2)
                   console.log(playerGuess)
                   getWinner()
+                  switchTurn()
                   })
               }
             })
         }
       })
-      switchTurn()
   }
 
 // FUNCTION TO DETERMINE A WINNER
