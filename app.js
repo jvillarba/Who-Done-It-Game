@@ -85,15 +85,18 @@ var game = {
 
 // FROM BRYAN FROM PHILIPPE HOW TO SWITCH BETWEEN PLAYERS
 var currentPlayer = game.player1
+var nextPlayer = game.player2
 
 function switchTurn(){
   if(currentPlayer == game.player1){
       currentPlayer = game.player2
+      nextPlayer = game.player1
       $("#right").css("opacity", 1.0);
       $("#left").fadeTo(3000, 0.2);
 //      console.log(currentPlayer)
   } else {
       currentPlayer = game.player1
+      nextPlayer = game.player2
       $("#left").css("opacity", 1.0);
       $("#right").fadeTo(3000, 0.2);
 //      console.log(currentPlayer)
@@ -117,7 +120,7 @@ instructions.addEventListener('click', function(){
   $murderSound.play()
   $spacers.show()
   setTimeout(function(){
-    $cover.fadeOut(3000)
+    $cover.fadeOut(2000)
     $resets.fadeIn()
     $boxes.fadeIn()
     $('.suspect').css("opacity",1)
@@ -166,7 +169,7 @@ instructions.addEventListener('click', function(){
 // DISPLAYS KILLER
   console.log(killer)
   $players.fadeIn(5000)
-  instructions.innerHTML = "Please pick a suspect"
+  instructions.innerHTML = "Please pick a suspect, " + currentPlayer.name
 
 // PLAYER CHOOSES A SUSPECT
   for (var i = 0; i < suspectCards.length; i++) {
@@ -184,46 +187,37 @@ instructions.addEventListener('click', function(){
       $('.suspect').css("opacity",0.2)
       $('.room').css("opacity",0.2)
       $('.weapon').css("opacity",1)
-      })
-  }
-  // if (this.id === killer.suspect.id) {
-  //   return
-  // }
-  //   console.log('wrong. try again')
 
-// PLAYER CHOOSES A WEAPON
-  for (var i = 0; i < weaponCards.length; i++) {
-      // $(".weapon").css("opacity", 1.0)
-      weaponCards[i].addEventListener('click', function(){
-        $sound2.play()
-        console.log(this)
-      playerGuess.weapon = (this.id)
-      instructions.innerHTML = "Now, in which room..."
-// console.log('asking for room')
-      $('.suspect').css("opacity",0.2)
-      $('.weapon').css("opacity",0.2)
-      $('.room').css("opacity",1)
-      })
-  }
+      // PLAYER CHOOSES A WEAPON
+        for (var i = 0; i < weaponCards.length; i++) {
+            // $(".weapon").css("opacity", 1.0)
+            weaponCards[i].addEventListener('click', function(){
+              $sound2.play()
+              console.log(this)
+            playerGuess.weapon = (this.id)
+            instructions.innerHTML = "Now, in which room..."
+      // console.log('asking for room')
+            $('.suspect').css("opacity",0.2)
+            $('.weapon').css("opacity",0.2)
+            $('.room').css("opacity",1)
 
-// PLAYER CHOOSES A ROOM
-  for (var i = 0; i < roomCards.length; i++){
-      // $(".room").css("opacity", 1.0)
-      roomCards[i].addEventListener('click', function(){
-        $sound3.play()
-        console.log(this)
-      playerGuess.room = (this.id)
-      $('.room').css("opacity",0.2)
-      console.log(playerGuess)
-      getWinner()
+            // PLAYER CHOOSES A ROOM
+              for (var i = 0; i < roomCards.length; i++){
+                  // $(".room").css("opacity", 1.0)
+                  roomCards[i].addEventListener('click', function(){
+                    $sound3.play()
+                    console.log(this)
+                  playerGuess.room = (this.id)
+                  $('.room').css("opacity",0.2)
+                  console.log(playerGuess)
+                  getWinner()
+                  })
+              }
+            })
+        }
+      })
       switchTurn()
-      })
   }
-  // if (this.id === killer.weapon.id) {
-  //   console.log('right weapon')
-  //   return
-  // }
-  //   console.log('wrong. try again')
 
 // FUNCTION TO DETERMINE A WINNER
   var getWinner = function() {
@@ -252,7 +246,7 @@ instructions.addEventListener('click', function(){
           timer: 3000,
           showConfirmButton: false
       });
-      instructions.innerHTML = "Choose a suspect"
+      instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
       $('.suspect').css("opacity",1)
       $('.room').css("opacity",0.2)
       $('.room').css("opacity",0.2)
@@ -267,7 +261,7 @@ instructions.addEventListener('click', function(){
           playerGuess.room === killer.room.id))
     {
       // instructions.innerHTML = "Nice... " +currentPlayer.name+ " had one correct guess."
-      instructions.innerHTML = "Choose a suspect"
+      instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
       swal({
           title: "Nice! One correct guess.",
           timer: 3000,
@@ -278,7 +272,7 @@ instructions.addEventListener('click', function(){
       $('.room').css("opacity",0.2)
     } else {
       // instructions.innerHTML = "Wrong guess!  Next player choose a suspect"
-      instructions.innerHTML = "Choose a suspect"
+      instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
       swal({
           title: "All three guesses are wrong!",
           timer: 3000,
