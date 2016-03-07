@@ -26,24 +26,31 @@ var plumImg = '<img class="suspect" src="images/Prof_Plum.png" id="plum" />'
 var whiteImg = '<img class="suspect" src="images/Mrs_White.png" id="white" />'
 var peacockImg = '<img class="suspect" src="images/Mrs_Peacock.png" id="peacock" />'
 var mustardImg = '<img class="suspect" src="images/Col_Mustard.png" id="mustard" />'
+var yvetteImg = '<img class="suspect" src="images/Yvette.png" id="yvette" />'
 var candlestickImg = '<img class="weapon" src="images/candlestick.png" id="candlestick" />'
 var pipeImg = '<img class="weapon" src="images/pipe.png" id="pipe" />'
-var malletImg = '<img class="weapon" src="images/mallet.png" id="mallet" />'
+// changed images
+// var malletImg = '<img class="weapon" src="images/mallet.png" id="mallet" />'
+// var statueImg = '<img class="weapon" src="images/statue.png" id="statue" />'
+// var horseshoeImg = '<img class="weapon" src="images/horseshoe.png" id="horseshoe" />'
 var gunImg = '<img class="weapon" src="images/gun.png" id="gun" />'
-var statueImg = '<img class="weapon" src="images/statue.png" id="statue" />'
-var horseshoeImg = '<img class="weapon" src="images/horseshoe.png" id="horseshoe" />'
+var knifeImg = '<img class="weapon" src="images/knife.png" id="knife" />'
+var ropeImg = '<img class="weapon" src="images/rope.png" id="rope" />'
+var wrenchImg = '<img class="weapon" src="images/wrench.png" id="wrench" />'
 var ballroomImg = '<img class="room" src="images/ballroom.png" id="ballroom" />'
 var billiardImg = '<img class="room" src="images/billiard.png" id="billiard" />'
 var conservatoryImg = '<img class="room" src="images/conservatory.png" id="conservatory" />'
 var diningRoomImg = '<img class="room" src="images/diningRoom.png" id="diningRoom" />'
 var kitchenImg = '<img class="room" src="images/kitchen.png" id="kitchen" />'
 var libraryImg = '<img class="room" src="images/library.png" id="library" />'
+var hallImg = '<img class="room" src="images/hall.png" id="hall" />'
+var studyImg = '<img class="room" src="images/study.png" id="study" />'
 var cardImg = '<img class="cardCl" src="images/card.png" id="cardId" />'
 
 var pictures = [
-  scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg,
-  candlestickImg, pipeImg, malletImg, gunImg, statueImg, horseshoeImg,
-  ballroomImg, billiardImg, conservatoryImg, diningRoomImg, kitchenImg, libraryImg
+  scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg, yvetteImg,
+  candlestickImg, pipeImg, knifeImg, gunImg, ropeImg, wrenchImg,
+  ballroomImg, billiardImg, conservatoryImg, diningRoomImg, kitchenImg, libraryImg, studyImg, hallImg
 ]
 var suspects = [
   {name: 'Miss Scarlet', id: 'scarlet'},
@@ -51,15 +58,16 @@ var suspects = [
   {name: 'Professor Plum', id: 'plum'},
   {name: 'Mrs White', id: 'white'},
   {name: 'Mrs Peacock', id: 'peacock'},
-  {name: 'Col Mustard', id: 'mustard'}
+  {name: 'Col Mustard', id: 'mustard'},
+  {name: 'Yvette', id: 'yvette'}
 ]
 var weapons = [
   {item: 'Candlestick', id: 'candlestick'},
   {item: 'Lead Pipe', id: 'pipe'},
-  {item: 'Mallet', id: 'mallet'},
+  {item: 'Knife', id: 'knife'},
   {item: 'Gun', id: 'gun'},
-  {item: 'Statuette', id: 'statue'},
-  {item: 'Horseshoe', id: 'horseshoe'}
+  {item: 'Rope', id: 'rope'},
+  {item: 'Wrench', id: 'wrench'}
 ]
 var rooms = [
   {item: 'Ballroom', id: 'ballroom'},
@@ -67,7 +75,9 @@ var rooms = [
   {item: 'Conservatory', id: 'conservatory'},
   {item: 'Dining Room', id: 'diningRoom'},
   {item: 'Kitchen', id: 'kitchen'},
-  {item: 'Library', id: 'library'}
+  {item: 'Library', id: 'library'},
+  {item: 'Hall', id: 'hall'},
+  {item: 'Study', id: 'study'}
 ]
 var killer = {}
 var playerGuess = {}
@@ -227,7 +237,7 @@ instructions.addEventListener('click', function(){
     {
       instructions.innerHTML = "CONGRATULATIONS!"
       swal(
-          "We have a winner!"
+          "We have a winner! " + currentPlayer.name
       )
       $taDa.play()
     } else if ((playerGuess.suspect === killer.suspect.id &&
