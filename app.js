@@ -11,8 +11,8 @@ var boxes = document.getElementsByClassName('box')
 // HIDES ASSETS BEFORE GAME STARTS
 var $players = $('.player')
 $players.hide()
-var $spacers = $('.spacer')
-$spacers.hide()
+// var $spacers = $('.spacer')
+// $spacers.hide()
 var $boxes = $('.box')
 $boxes.hide()
 var $resets = $('#reset')
@@ -123,23 +123,25 @@ var $taDa = $('#taDaSnd')[0]
 
 // GAME START ANIMATION FILE
 var $cover = $('#cover')
+var $instructions = $('#instructions')
 
 // CLICKING START BUTTON
 instructions.addEventListener('click', function(){
   console.log('start game now')
+  $instructions.hide()
   $murderSound.play()
-  $spacers.show()
+  // $spacers.show()
   setTimeout(function(){
-    $cover.fadeOut(1000)
+    $cover.fadeOut(5000)
     $resets.fadeIn()
     $boxes.fadeIn()
     $('.suspect').css("opacity",1)
     $('#right').css("opacity",0.2)
-    $spacers.fadeOut(3000)
+    // $spacers.fadeOut(3000)
 
   // $starts.hide() ~ NOT NEEDED WITH NEW LOCATION
 
-}, 7000)
+}, 1000)
 
 // SHUFFLES THE PICTURES ARRAY
   function fisherYates (myArray) {
@@ -178,7 +180,8 @@ instructions.addEventListener('click', function(){
 
 // DISPLAYS KILLER
   console.log(killer)
-  $players.fadeIn(5000)
+  $players.fadeIn(6000)
+  $instructions.fadeIn(12000)
   instructions.innerHTML = "Please pick a suspect, " + currentPlayer.name
 
 // PLAYER CHOOSES A SUSPECT
@@ -236,9 +239,17 @@ instructions.addEventListener('click', function(){
           playerGuess.room === killer.room.id)
     {
       instructions.innerHTML = "CONGRATULATIONS!"
-      swal(
-          "We have a winner! " + currentPlayer.name
-      )
+      swal({
+        title: currentPlayer.name + " is the winner!",
+        text: "The killer was " + playerGuess.suspect + ", who used the " + playerGuess.weapon + " in the " + playerGuess.room + ".",
+        type: "success",
+        // imageUrl: playerGuess.suspect+"Img"
+        // imageUrl: playerGuess.weapon+"Img",
+        // imageUrl: playerGuess.room+"Img"
+      });
+      // swal(
+      //     "We have a winner! " + currentPlayer.name
+      // )
       $taDa.play()
     } else if ((playerGuess.suspect === killer.suspect.id &&
           playerGuess.weapon === killer.weapon.id &&
@@ -252,14 +263,14 @@ instructions.addEventListener('click', function(){
     {
       // instructions.innerHTML = "Wow! " +currentPlayer.name+ " had two correct guesses."
       swal({
-          title: "Wow! Two correct guesses.",
+          title: "Sweet! " + currentPlayer.name + " had two correct guesses.",
           timer: 3000,
           showConfirmButton: false
       });
       instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
+      $('.room').css("opacity",0.2)
+      $('.room').css("opacity",0.2)
       $('.suspect').css("opacity",1)
-      $('.room').css("opacity",0.2)
-      $('.room').css("opacity",0.2)
     } else if ((playerGuess.suspect === killer.suspect.id &&
           playerGuess.weapon !== killer.weapon.id &&
           playerGuess.room !== killer.room.id) || (
@@ -273,24 +284,30 @@ instructions.addEventListener('click', function(){
       // instructions.innerHTML = "Nice... " +currentPlayer.name+ " had one correct guess."
       instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
       swal({
-          title: "Nice! One correct guess.",
+          title: "Nice! " + currentPlayer.name + " had one correct guess.",
           timer: 3000,
           showConfirmButton: false
       });
+      $('.room').css("opacity",0.2)
+      $('.room').css("opacity",0.2)
       $('.suspect').css("opacity",1)
-      $('.room').css("opacity",0.2)
-      $('.room').css("opacity",0.2)
     } else {
       // instructions.innerHTML = "Wrong guess!  Next player choose a suspect"
       instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
       swal({
-          title: "All three guesses are wrong!",
-          timer: 3000,
-          showConfirmButton: false
+        title: "SORRY",
+        text: "All three guesses are wrong! Is" +nextPlayer.name+ "ready?",
+        type: "error",
+        confirmButtonText: "Cool"
       });
+      // swal({
+      //     title: "All three guesses are wrong!",
+      //     timer: 3000,
+      //     showConfirmButton: false
+      // });
+      $('.room').css("opacity",0.2)
+      $('.room').css("opacity",0.2)
       $('.suspect').css("opacity",1)
-      $('.room').css("opacity",0.2)
-      $('.room').css("opacity",0.2)
     }
   }
 

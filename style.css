@@ -47,10 +47,11 @@ main {
   margin-right: auto;
 }
 
-.spacer {
+/*.spacer {
   width: 100%;
   height: 90px;
-}
+}*/
+
 .player {
   font-size: 30px;
   text-align: center;
