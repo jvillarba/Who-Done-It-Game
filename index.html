@@ -6,6 +6,8 @@
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Chango' rel='stylesheet' type='text/css'>
     <script src="jquery-2.2.0.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-2.1.4.min.js"> -->
+    <script src="jquery.flip.min.js">
     <script src="dist/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
     <audio id="murderSnd">
@@ -27,39 +29,98 @@
   <body>
     <div id="container">
     <h1 class="method1">Who? How? Where?</h1>
-    <main>
       <img style="width: 100%" id="cover" src="images/cover.png" />
-        <div class="board"></div>
-          <div id="instructions">Click here...when you are ready to play</div>
-          <br>
-          <!-- <div class="box"><img class="cardCl" src="images/card.png" id="cardId" /></div> -->
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <br>
-          <div class="player" id="left">Player 1</div>
-          <div class="player" id="right">Player 2</div>
-          <button id="reset">Restart Game</button>
-    </main>
+      <div id="instructions">Click here...when you are ready to play</div>
+      <br>
+      <div id="flip-container">
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card">
+          <div class="front"><img class="cardCl" src="images/card.png"></div>
+          <div class="back"></div>
+      </div>
+    <br>
+    <div class="player" id="left">Player One</div>
+    <div class="player" id="right">Player Two</div>
+    <button id="reset">Restart Game</button>
     <script src="app.js"></script>
-    <div>
   </body>
 </html>

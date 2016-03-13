@@ -6,13 +6,14 @@ var suspectCards = document.getElementsByClassName('suspect')
 var weaponCards = document.getElementsByClassName('weapon')
 var roomCards = document.getElementsByClassName('room')
 var instructions = document.getElementById('instructions')
-var boxes = document.getElementsByClassName('box')
+var backs = document.getElementsByClassName('back')
+var cards = document.getElementsByClassName('card')
 
 // HIDES ASSETS BEFORE GAME STARTS
 var $players = $('.player')
 $players.hide()
-var $boxes = $('.box')
-$boxes.hide()
+var $cards = $('.card')
+$cards.hide()
 var $resets = $('#reset')
 $resets.hide()
 
@@ -81,11 +82,11 @@ var playerGuess = {}
 
 var game = {
   player1: {
-      name: "Player 1",
+      name: "Player One",
       // score: 0 ~ placeholder
   },
   player2: {
-      name: "Player 2",
+      name: "Player Two",
       // score: 0 ~ placeholder
   }
 }
@@ -98,14 +99,14 @@ function switchTurn(){
   if(currentPlayer == game.player1){
       currentPlayer = game.player2
       nextPlayer = game.player1
+      $("#left").fadeTo(3000, 0.2);
       $("#right").css("opacity", 1.0);
-      $("#left").fadeTo(4000, 0.2);
 //      console.log(currentPlayer)
   } else {
       currentPlayer = game.player1
       nextPlayer = game.player2
+      $("#right").fadeTo(3000, 0.2);
       $("#left").css("opacity", 1.0);
-      $("#right").fadeTo(4000, 0.2);
 //      console.log(currentPlayer)
   }
   return currentPlayer
@@ -124,17 +125,16 @@ var $instructions = $('#instructions')
 
 // CLICKING START BUTTON
 instructions.addEventListener('click', function(){
-  console.log('start game now')
-  $murderSound.play()
-  $cover.fadeOut(5000)
+  console.log('1-start game now / instructions hide')
   $instructions.hide()
-  $("#right").css("opacity",0.2)
-  // $spacers.show()
+  $murderSound.play()
+  $cover.fadeOut(4000)
+  $("#right").css("opacity",0.1)
   setTimeout(function(){
     $resets.fadeIn()
-    $boxes.fadeIn()
+    $cards.fadeIn(10000)
     $(".suspect").css("opacity",1)
-  }, 1000)
+  }, 10000)
 
 // SHUFFLES THE PICTURES ARRAY
   function fisherYates (myArray) {
@@ -150,9 +150,9 @@ instructions.addEventListener('click', function(){
   }
 
 // LAYS OUT THE CHOICES ON THE BOARD
-  for (var i = 0; i < boxes.length; i++) {
+  for (var i = 0; i < backs.length; i++) {
       fisherYates(pictures)
-      boxes[i].innerHTML = pictures.splice(0,1)
+      backs[i].innerHTML = pictures.splice(0,1)
   }
 
 // CLEARS KILLER OBJECT FOR NEW GAME
@@ -169,53 +169,45 @@ instructions.addEventListener('click', function(){
   console.log(killer)
   $players.fadeIn(6000)
   $instructions.fadeIn(12000)
-  instructions.innerHTML = "Please pick a suspect, " + currentPlayer.name
+  instructions.innerHTML = currentPlayer.name + ", please pick a suspect"
 
   // PLAYER CHOOSES A SUSPECT
   for (var i = 0; i < suspectCards.length; i++) {
     suspectCards[i].addEventListener('click', function(){
-    $sound1.play()
-    console.log(this)
-      // if ($(this).hasClass("suspect")) {
-        playerGuess.suspect = (this.id)
-      // } else {
-      //   instructions.innerHTML = "Wrong choice. Please select a suspect."
-      // }
-
+      $sound1.play()
+      console.log(this)
+      playerGuess.suspect = (this.id)
       instructions.innerHTML = "Choose the killer's weapon"
       // console.log('asking for weapon')
-      $(".suspect").css("opacity",0.2)
-      $(".room").css("opacity",0.2)
+      $(".suspect").css("opacity",0.2).off("click")
+      $(".room").css("opacity",0.2).off("click")
       $(".weapon").css("opacity",1)
     })
   }
-
   // PLAYER CHOOSES A WEAPON
+  // suspectCards[i].removeEventListener('click')
   for (var i = 0; i < weaponCards.length; i++) {
-    // $(".weapon").css("opacity", 1.0)
     weaponCards[i].addEventListener('click', function(){
       $sound2.play()
       console.log(this)
-    playerGuess.weapon = (this.id)
-    instructions.innerHTML = "Now, in which room..."
+      playerGuess.weapon = (this.id)
+      instructions.innerHTML = "Now, in which room..."
       // console.log('asking for room')
       $(".suspect").css("opacity",0.2)
       $(".weapon").css("opacity",0.2)
       $(".room").css("opacity",1)
     })
   }
-
   // PLAYER CHOOSES A ROOM
   for (var i = 0; i < roomCards.length; i++){
-    // $(".room").css("opacity", 1.0)
     roomCards[i].addEventListener('click', function(){
       $sound3.play()
       console.log(this)
-    playerGuess.room = (this.id)
-    $('.room').css("opacity",0.2)
-    console.log(playerGuess)
-    getWinner()
-    switchTurn()
+      playerGuess.room = (this.id)
+      $('.room').css("opacity",0.2)
+      console.log(playerGuess)
+      getWinner()
+      switchTurn()
     })
   }
 })
@@ -227,6 +219,7 @@ instructions.addEventListener('click', function(){
         playerGuess.room === killer.room.id)
     {
       instructions.innerHTML = "CONGRATULATIONS!"
+      $players.hide()
       swal({
         title: currentPlayer.name + " is the winner!",
         text: "The killer was " + killer.suspect.name + ", who used the " + killer.weapon.item + " in the " + killer.room.item + ".",
@@ -268,27 +261,27 @@ instructions.addEventListener('click', function(){
           playerGuess.room === killer.room.id))
     {
       // instructions.innerHTML = "Nice... " +currentPlayer.name+ " had one correct guess."
-      instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
       swal({
           title: "NICE!",
           text: currentPlayer.name + " had one correct guess.",
           timer: 3000,
           showConfirmButton: false
       });
+      instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
       $(".room").css("opacity",0.2)
       $(".weapon").css("opacity",0.2)
       $(".suspect").css("opacity",1)
     } else {
       // instructions.innerHTML = "Wrong guess!  Next player choose a suspect"
-      instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
       swal({
         title: "SORRY",
-        text: "All three guesses are wrong! Is " +nextPlayer.name+ " ready?",
+        text: "All three guesses are wrong!  Is " +nextPlayer.name+ " ready to play?",
         type: "error",
         timer: 3000,
         showConfirmButton: false
         // confirmButtonText: "Cool"
       });
+      instructions.innerHTML = "Please pick a suspect, " + nextPlayer.name
       $(".room").css("opacity",0.2)
       $(".weapon").css("opacity",0.2)
       $(".suspect").css("opacity",1)
@@ -296,11 +289,18 @@ instructions.addEventListener('click', function(){
   }
 
 // TESTING IF PUTTING THIS WILL ALLOW ME TO RESET
-    var pictures = [
-      scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg, yvetteImg,
-      candlestickImg, pipeImg, knifeImg, revolverImg, ropeImg, wrenchImg,
-      ballroomImg, billiardImg, conservatoryImg, diningRoomImg, kitchenImg, libraryImg, studyImg, hallImg
-    ]
+    // var pictures = [
+    //   scarletImg, greenImg, plumImg, whiteImg, peacockImg, mustardImg, yvetteImg,
+    //   candlestickImg, pipeImg, knifeImg, revolverImg, ropeImg, wrenchImg,
+    //   ballroomImg, billiardImg, conservatoryImg, diningRoomImg, kitchenImg, libraryImg, studyImg, hallImg
+    // ]
+
+// FLIP FUNCTION
+$(function (){
+  $(".card").flip({
+    trigger: "hover"
+  })
+})
 
 // BUTTON TO RESET GAME
 resetButton.addEventListener('click', function(){
