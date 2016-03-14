@@ -128,12 +128,15 @@ instructions.addEventListener('click', function(){
   console.log('1-start game now / instructions hide')
   $instructions.hide()
   $murderSound.play()
-  $cover.fadeOut(4000)
+  $cover.fadeOut(10000)
   $("#right").css("opacity",0.1)
   setTimeout(function(){
-    $resets.fadeIn()
-    $cards.fadeIn(10000)
     $(".suspect").css("opacity",1)
+    $instructions.fadeIn(12000)
+    instructions.innerHTML = currentPlayer.name + ", please pick a suspect"
+    $cards.fadeIn(5000)
+    $players.fadeIn(6000)
+    $resets.fadeIn(9000)
   }, 10000)
 
 // SHUFFLES THE PICTURES ARRAY
@@ -163,13 +166,8 @@ instructions.addEventListener('click', function(){
   killer.weapon = weapons[Math.floor(Math.random() * weapons.length)]
   killer.room = rooms[Math.floor(Math.random() * rooms.length)]
 
-// instructions.innerHTML = ""
-
-// DISPLAYS KILLER
+// DISPLAY KILLER
   console.log(killer)
-  $players.fadeIn(6000)
-  $instructions.fadeIn(12000)
-  instructions.innerHTML = currentPlayer.name + ", please pick a suspect"
 
   // PLAYER CHOOSES A SUSPECT
   for (var i = 0; i < suspectCards.length; i++) {
@@ -219,7 +217,7 @@ instructions.addEventListener('click', function(){
         playerGuess.room === killer.room.id)
     {
       instructions.innerHTML = "CONGRATULATIONS!"
-      $players.hide()
+      $players.fadeOut()
       swal({
         title: currentPlayer.name + " is the winner!",
         text: "The killer was " + killer.suspect.name + ", who used the " + killer.weapon.item + " in the " + killer.room.item + ".",
